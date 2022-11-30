@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct TodoAppApp: App {
+    @StateObject private var todos = TodoController(todos: fakeData)
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainScreen()
+                .environmentObject(todos)
         }
     }
 }
