@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TodoDetail: View {
     @State var todo : TodoModel
+    @State var isEdit : Bool = false
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -22,11 +23,14 @@ struct TodoDetail: View {
         .toolbar(content: {
             Button {
                 // TODO: Edit todo
-                print("Edit Todo")
+                isEdit.toggle()
             } label: {
                 Image(systemName: "highlighter")
             }
 
+        })
+        .sheet(isPresented: $isEdit, content: {
+            EditTodoSheet(todo: $todo)
         })
         .padding(.horizontal, 16)
         .navigationBarTitleDisplayMode(.inline)

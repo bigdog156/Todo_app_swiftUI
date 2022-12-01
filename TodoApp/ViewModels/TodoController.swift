@@ -16,7 +16,15 @@ class TodoController : ObservableObject{
     }
     
     func addTodo(title: String, content: String){
+        
         let data: TodoModel = TodoModel(id: Int.random(in: 1...1000), title: title, content: content)
         self.todos.append(data)
+    }
+    
+    func updateTodo(id: Int, title: String, content: String) {
+        if let index = self.todos.firstIndex(where: {$0.id == id}){
+            self.todos[index] = TodoModel(id: id, title: title, content: content)
+            print(self.todos[index])
+        }
     }
 }
